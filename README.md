@@ -1,6 +1,7 @@
 # ESP8266GPIOandServo
 ESP8266 as Access Point and Web Server  , Control GPIO and Servo by Web
 ## html to C code file using guide
+html2Ccode.py was wrote on python2 language
 #### Command
 python html2Ccode.py -i <inputfileName> -o <outputfileName> -p <parameterName>
 <intputfileName> is html source code file
