@@ -24,6 +24,8 @@ Ex. add htmlCode_init() please replace htmlCode by your parameter
 #### Using by send text on parameter from first to last 
 <according to quantity of variable please check on pageCount that had defined on generated file>
 
-```for (i=0;i<pageCount;i++){
+```
+for (i=0;i<pageCount;i++){
   client.print(htmlCode[i]); please replace htmlCode by your parameter
-}```
+}
+```
