@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Nodemcu Control</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+</head>
+<body>
+<h4>Nodemcu Controller</h4>
+<p>created by playelek.com</p>
+<p id="div1"></p>
+<div id="displayId"></div>
+
+<h4>LED ON/OFF</h4>
+<input type="checkbox" class="cmn-toggle cmn-toggle-round" id="led1" onchange="sendVal()">
+<label for="led1"></label>
+<p id="chkboxVal"></p>
+
+<h4>SERVOS</h4>
+<input type="range" id="servo1" min="0" max="180" value="90" oninput="sendVal();rangeVal1.value=value;">
+<output id="rangeVal1">90</output>
+<input type="range" id="servo2" min="0" max="180" value="90" oninput="sendVal();rangeVal2.value=value;">
+<output id="rangeVal2">90</output>
+
+<script>
+var ajax = null;
+if (window.XMLHttpRequest) {
+    // code for modern browsers
+    ajax = new XMLHttpRequest();
+} else if (window.ActiveXObject) {
+    // code for IE6, IE5
+    ajax = new ActiveXObject("Microsoft.XMLHTTP");
+} else { 
+    // code for stone age web browser
+    document.getElementById('div1').innerHTML = 'Ajax is not supported by this browser';
+}
+
+function sendVal() 
+{
+    var x = document.getElementById("led1").checked;
+    var y = document.getElementById("servo1").value;
+    var z = document.getElementById("servo2").value;
+    var URL = "/node/?led1="+ x +"&servo1="+ y +"&servo2="+ z;
+    ajax.open("GET", URL);
+    ajax.send(null);
+}
+
+</script>
+<style>
+/* ==== COMMON ==== */
+.cmn-toggle {
+  position: absolute;
+  margin-left: -9999px;
+  visibility: hidden;
+}
+
+.cmn-toggle + label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* ==== SWITCH 1 - ROUND ==== */
+input.cmn-toggle-round + label {
+  padding: 2px;
+  width: 120px;
+  height: 60px;
+  background-color: #dddddd;
+  -webkit-border-radius: 60px;
+  -moz-border-radius: 60px;
+  -ms-border-radius: 60px;
+  -o-border-radius: 60px;
+  border-radius: 60px;
+}
+
+input.cmn-toggle-round + label:before, input.cmn-toggle-round + label:after {
+  display: block;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  bottom: 1px;
+  content: "";
+}
+
+input.cmn-toggle-round + label:before {
+  right: 1px;
+  background-color: #f1f1f1;
+  -webkit-border-radius: 60px;
+  -moz-border-radius: 60px;
+  -ms-border-radius: 60px;
+  -o-border-radius: 60px;
+  border-radius: 60px;
+  -webkit-transition: background 0.4s;
+  -moz-transition: background 0.4s;
+  -o-transition: background 0.4s;
+  transition: background 0.4s;
+}
+
+input.cmn-toggle-round + label:after {
+  width: 58px;
+  background-color: #fff;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+  border-radius: 100%;
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  -webkit-transition: margin 0.4s;
+  -moz-transition: margin 0.4s;
+  -o-transition: margin 0.4s;
+  transition: margin 0.4s;
+}
+
+input.cmn-toggle-round:checked + label:before {
+  background-color: #8ce196;
+}
+
+input.cmn-toggle-round:checked + label:after {
+  margin-left: 60px;
+}
+
+/* ==== Range ==== */
+input[type=range] {
+  -webkit-appearance: none;
+  margin: 35px 0;
+  width: 85%;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 12px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #F1F1F1;
+  background: #8CE196;
+  border-radius: 15px;
+  border: 1px solid #DDDDDD;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 0px 0px 0px #F1F1F1;
+  border: 1px solid #DDDDDD;
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  background: #FFFFFF;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -20px;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #8CE196;
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 12px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #F1F1F1;
+  background: #8CE196;
+  border-radius: 15px;
+  border: 1px solid #DDDDDD;
+}
+
+input[type=range]::-moz-range-thumb {
+  box-shadow: 0px 0px 0px #F1F1F1;
+  border: 1px solid #DDDDDD;
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  background: #FFFFFF;
+  cursor: pointer;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 12px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+input[type=range]::-ms-fill-lower {
+  background: #8CE196;
+  border: 1px solid #DDDDDD;
+  border-radius: 30px;
+  box-shadow: 0px 0px 0px #F1F1F1;
+}
+
+input[type=range]::-ms-fill-upper {
+  background: #8CE196;
+  border: 1px solid #DDDDDD;
+  border-radius: 30px;
+  box-shadow: 0px 0px 0px #F1F1F1;
+}
+
+input[type=range]::-ms-thumb {
+  box-shadow: 0px 0px 0px #F1F1F1;
+  border: 1px solid #DDDDDD;
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  background: #FFFFFF;
+  cursor: pointer;
+}
+
+input[type=range]:focus::-ms-fill-lower {
+  background: #8CE196;
+}
+
+input[type=range]:focus::-ms-fill-upper {
+  background: #8CE196;
+}
+
+</style>
+
+</body>
+</html>
