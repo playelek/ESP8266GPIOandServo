@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Nodemcu Control</title>
+<title>Nodemcu Control V1.0</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 </head>
 <body>
@@ -39,7 +39,7 @@ function sendVal()
     var x = document.getElementById("led1").checked;
     var y = document.getElementById("servo1").value;
     var z = document.getElementById("servo2").value;
-    var URL = "/node/?led1="+ x +"&servo1="+ y +"&servo2="+ z;
+    var URL = "/led1="+ x +"$servo1="+ y +"$servo2="+ z + "$";
     ajax.open("GET", URL);
     ajax.send(null);
 }
