@@ -1,5 +1,6 @@
 # ESP8266GPIOandServo
 ESP8266 as Access Point and Web Server  , Control GPIO and Servo by Web
+Related Article: https://playelek.com/webbasedesp8266/
 ## html to C code file using guide
 html2Ccode.py was wrote on python2 language
 ### Command
